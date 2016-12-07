@@ -6,6 +6,19 @@ T read(IStream & is)
     return x;
 }
 
+template <class T, class IStream>
+vector<T> read_vector(IStream & is, typename vector<T>::size_type n)
+{
+    vector<T> xs;
+    
+    for(; n > 0; -- n)
+    {
+        xs.push_back(read<int>(is));
+    }
+    
+    return xs;
+}
+
 /**
 @todo Пропускать чётные
 */
