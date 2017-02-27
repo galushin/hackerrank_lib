@@ -47,3 +47,26 @@ vector<IntType> make_primes_below(IntType p_max)
     
     return primes;
 }
+
+template <class IntType>
+IntType gcd(IntType x, IntType y)
+{
+    auto const zero = IntType(0);
+    
+    if(y == zero)
+    {
+        return x;
+    }
+    
+    if(x == zero)
+    {
+        return y;
+    }
+    
+    if(x < y)
+    {
+        return gcd(y, x);
+    }
+    
+    return gcd(x % y, y);
+}
