@@ -70,3 +70,23 @@ IntType gcd(IntType x, IntType y)
     
     return gcd(x % y, y);
 }
+
+template <class T, class N, class BinaryOperation>
+T power_positive(T x, N n, BinaryOperation op)
+{
+    if(n == N(1))
+    {
+        return x;
+    }
+    
+    auto result = power_positive(x, n / 2, op);
+    
+    result = op(result, result);
+    
+    if(n % 2 == 1)
+    {
+        result = op(result, x);
+    }
+    
+    return result;
+}
