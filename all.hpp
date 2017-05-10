@@ -19,6 +19,13 @@ vector<T> read_vector(IStream & is, typename vector<T>::size_type n)
     return xs;
 }
 
+template <class T, class IStream>
+vector<T> 
+read_vector(IStream & is)
+{
+    return read_vector<T>(is, read<typename vector<T>::size_type>(is));
+}
+
 /**
 @todo Пропускать чётные
 */
