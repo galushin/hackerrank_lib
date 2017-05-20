@@ -7,9 +7,10 @@ T read(IStream & is)
 }
 
 template <class T, class IStream>
-vector<T> read_vector(IStream & is, typename vector<T>::size_type n)
+std::vector<T> 
+read_vector(IStream & is, typename std::vector<T>::size_type n)
 {
-    vector<T> xs;
+    std::vector<T> xs;
     
     for(; n > 0; -- n)
     {
@@ -20,10 +21,10 @@ vector<T> read_vector(IStream & is, typename vector<T>::size_type n)
 }
 
 template <class T, class IStream>
-vector<T> 
+std::vector<T> 
 read_vector(IStream & is)
 {
-    return read_vector<T>(is, read<typename vector<T>::size_type>(is));
+    return read_vector<T>(is, read<typename std::vector<T>::size_type>(is));
 }
 
 /**
