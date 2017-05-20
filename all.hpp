@@ -27,6 +27,37 @@ read_vector(IStream & is)
     return read_vector<T>(is, read<typename std::vector<T>::size_type>(is));
 }
 
+template <class ForwardIterator>
+std::pair<ForwardIterator, typename std::iterator_traits<ForwardIterator>::difference_type>
+max_count(ForwardIterator first, ForwardIterator last)
+{
+    using Count = typename std::iterator_traits<ForwardIterator>::difference_type;
+    
+    if(first == last)
+    {
+        return {std::move(first), Count{0}};
+    }
+    
+    std::pair<ForwardIterator, Count> result{first, Count{1}};
+    ++ first;
+    
+    for(; first != last; ++ first)
+    {
+        if(*result.first < *first)
+        {
+            result.first = first;
+            result.second = Count{1};
+        }
+        else if(!(*first < *result.first))
+        {
+            result.first = first;
+            result.second += 1;
+        }
+    }
+    
+    return result;
+}
+
 /**
 @todo Пропускать чётные
 */
