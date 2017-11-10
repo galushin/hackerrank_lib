@@ -129,3 +129,16 @@ T power_positive(T x, N n, BinaryOperation op)
     
     return result;
 }
+
+template <class IntType>
+IntType digits_sum(IntType num, IntType base)
+{
+    auto sum = IntType{0};
+    
+    for(; num > 0; num /= base)
+    {
+        sum += num % base;
+    }
+    
+    return sum;
+}
