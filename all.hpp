@@ -14,7 +14,7 @@ read_vector(IStream & is, typename std::vector<T>::size_type n)
     
     for(; n > 0; -- n)
     {
-        xs.push_back(read<int>(is));
+        xs.push_back(read<T>(is));
     }
     
     return xs;
