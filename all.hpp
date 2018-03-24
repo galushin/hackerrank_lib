@@ -1,3 +1,6 @@
+#include <cassert>
+
+// Input/Output
 template <class T, class IStream>
 T read(IStream & is)
 {
@@ -27,6 +30,7 @@ read_vector(IStream & is)
     return read_vector<T>(is, read<typename std::vector<T>::size_type>(is));
 }
 
+// STL extensions
 template <class ForwardIterator>
 std::pair<ForwardIterator, typename std::iterator_traits<ForwardIterator>::difference_type>
 max_count(ForwardIterator first, ForwardIterator last)
@@ -58,6 +62,7 @@ max_count(ForwardIterator first, ForwardIterator last)
     return result;
 }
 
+// Number theory
 /**
 @todo Пропускать чётные
 */
@@ -110,6 +115,43 @@ IntType gcd(IntType x, IntType y)
     return gcd(x % y, y);
 }
 
+template <class IntType>
+IntType sum_of_divisible_below(IntType N, IntType K){
+    auto const n = N / K - (N % K == IntType{0});
+    
+    auto const last = K * n;
+    
+    return (K + last) * n / IntType{2};
+}
+
+template <class Integer>
+Integer divide_out_factor(Integer n, Integer factor)
+{
+    assert(n > Integer{0});
+
+    while(n % factor == Integer{0})
+    {
+        n /= factor;
+    }
+
+    return n;
+}
+
+template <class Integer>
+Integer divide_out_factor(Integer n, Integer factor, Integer & mf)
+{
+    if(n % factor == Integer{0})
+    {
+        mf = factor;
+        n /= factor;
+
+        n = divide_out_factor(n, factor);
+    }
+
+    return n;
+}
+
+// Powers
 template <class T, class N, class BinaryOperation>
 T power_positive(T x, N n, BinaryOperation op)
 {
@@ -130,6 +172,7 @@ T power_positive(T x, N n, BinaryOperation op)
     return result;
 }
 
+// Digits
 template <class IntType>
 IntType digits_sum(IntType num, IntType base)
 {
