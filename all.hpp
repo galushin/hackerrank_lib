@@ -72,7 +72,7 @@ vector<IntType> make_primes_below(IntType p_max)
     vector<IntType> primes;
     
     {
-        vector<bool> seive(p_max, true);
+        vector<bool> seive(p_max-1, true);
         
         for(auto i = seive.begin(); i != seive.end(); i = find(i, seive.end(), true))
         {
