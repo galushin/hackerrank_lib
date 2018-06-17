@@ -152,8 +152,8 @@ Integer divide_out_factor(Integer n, Integer factor, Integer & mf)
 }
 
 // Powers
-template <class T, class N, class BinaryOperation>
-T power_positive(T x, N n, BinaryOperation op)
+template <class T, class N, class BinaryOperation = std::multiplies<>>
+T power_positive(T x, N n, BinaryOperation op = BinaryOperation{})
 {
     if(n == N(1))
     {
