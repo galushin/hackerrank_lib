@@ -116,6 +116,14 @@ IntType gcd(IntType x, IntType y)
 }
 
 template <class IntType>
+IntType lcm(IntType x, IntType y)
+{
+    auto g = gcd(x, y);
+    
+    return x * (y / g);
+}
+
+template <class IntType>
 IntType sum_of_divisible_below(IntType N, IntType K){
     auto const n = N / K - (N % K == IntType{0});
     
